@@ -1,0 +1,40 @@
+[package]
+name = "leptos-unique-ids"
+description = "Leptos library to ensure unique ids in whole applications."
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+proc-macro = true
+path = "src/lib.rs"
+
+[dependencies]
+convert_case = "0.8"
+
+[features]
+default = ["into-str", "into-attribute-value"]
+into-str = []
+into-attribute-value = []
+
+[workspace]
+members = [".", "tests", "lints", "lints/literal_as_id_attribute_value", "lints/helpers"]
+
+[workspace.dependencies]
+clippy_utils = { git = "https://github.com/rust-lang/rust-clippy", rev = "0450db33a5d8587f7c1d4b6d233dac963605766b" }
+dylint_linting = "4.1.0"
+dylint_testing = "4.1.0"
+leptos = ">=0.5"
+lints-helpers = { path = "lints/helpers" }
+
+[lints]
+workspace = true
+
+[workspace.lints.rust]
+warnings = "deny"
+
+[workspace.lints.clippy]
+pedantic = { level = "deny", priority = -1 }
+perf = { level = "deny", priority = -1 }
+print_stdout = "deny"
+missing-panics-doc = "allow"
+too_many_lines = "allow"

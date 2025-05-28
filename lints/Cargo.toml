@@ -1,0 +1,23 @@
+[package]
+name = "leptos-unique-ids-lints"
+version = "0.1.0"
+authors = ["Álvaro Mondéjar Rubio"]
+description = "Dylint lints for leptos-unique-ids."
+edition = "2024"
+license = "MIT"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+literal_as_id_attribute_value = { path = "literal_as_id_attribute_value", features = [
+  "rlib"
+] }
+dylint_linting.workspace = true
+
+[package.metadata.rust-analyzer]
+rustc_private = true
+
+[lints]
+workspace = true

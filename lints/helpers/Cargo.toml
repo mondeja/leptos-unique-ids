@@ -1,0 +1,23 @@
+[package]
+name = "lints-helpers"
+version = "0.1.0"
+authors = ["Álvaro Mondéjar Rubio"]
+description = "Helpers for leptos-unique-ids lints."
+edition = "2024"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+dylint_linting.workspace = true
+clippy_utils.workspace = true
+
+[package.metadata.rust-analyzer]
+rustc_private = true
+
+[features]
+rlib = ["dylint_linting/constituent"]
+
+[lints]
+workspace = true

@@ -1,0 +1,4 @@
+# eol=lf is crucial here for correct testing on Windows
+# see https://github.com/Manishearth/compiletest-rs/issues/154
+* text=auto eol=lf
+Cargo.lock -diff linguist-generated=false

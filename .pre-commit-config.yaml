@@ -1,0 +1,36 @@
+repos:
+  - repo: https://github.com/rbubley/mirrors-prettier
+    rev: v3.4.2
+    hooks:
+      - id: prettier
+        args:
+          - --cache
+          - --cache-location=.prettier-cache
+          - --ignore-path=.gitignore
+  - repo: meta
+    hooks:
+      - id: check-hooks-apply
+        name: check-hooks-apply
+      - id: check-useless-excludes
+        name: check-useless-excludes
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        name: trailing-whitespace
+      - id: end-of-file-fixer
+        name: end-of-file-fixer
+  - repo: https://github.com/doublify/pre-commit-rust
+    rev: v1.0
+    hooks:
+      - id: fmt
+      - id: cargo-check
+      - id: clippy
+  - repo: https://github.com/mondeja/rust-pc-hooks
+    rev: v1.3.0
+    hooks:
+      - id: cargo-readme
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.17.1
+    hooks:
+      - id: markdownlint-cli2

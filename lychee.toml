@@ -1,0 +1,5 @@
+exclude = [
+  '^https://github\.com/mondeja/leptos-unique-ids/compare',
+  '^https://docs\.rs/leptos-unique-ids'
+]
+exclude_path = ["lychee.toml"]

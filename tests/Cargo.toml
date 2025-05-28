@@ -1,0 +1,10 @@
+[package]
+name = "tests"
+version = "0.1.0"
+authors = ["Álvaro Mondéjar Rubio"]
+description = "Integration tests for leptos-unique-ids lints."
+edition = "2024"
+publish = false
+
+[lints]
+workspace = true

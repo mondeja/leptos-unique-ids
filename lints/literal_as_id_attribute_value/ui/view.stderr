@@ -1,0 +1,11 @@
+warning: literal string passed as id attribute value
+  --> $DIR/view.rs:19:17
+   |
+LL |         <div id="my-identifier">Hello, world!</div>
+   |                 ^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://github.com/mondeja/leptos-unique-ids/tree/main/lints/literal_as_id_attribute_value#readme
+   = note: `#[warn(literal_as_id_attribute_value)]` on by default
+
+warning: 1 warning emitted
+
