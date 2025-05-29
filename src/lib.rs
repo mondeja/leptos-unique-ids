@@ -1,6 +1,6 @@
-//! [Leptos] library to ensure unique ids in whole applications. Use an attribute
-//! macro to generate unique ids and [Dylint] lints to prevent conflicts and ensuring
-//! consistency across all ids.
+//! [Leptos] library to ensure globally unique DOM identifiers across an application.
+//! Use an attribute macro to generate unique ids and [Dylint] lints to prevent
+//! conflicts and ensuring global consistency across all ids.
 //!
 //! [![Crates.io](https://img.shields.io/crates/v/leptos-unique-ids?logo=rust)](https://crates.io/crates/leptos-unique-ids)
 //! [![License](https://img.shields.io/crates/l/leptos-unique-ids?logo=mit)](https://github.com/mondeja/leptos-unique-ids/blob/master/LICENSE)

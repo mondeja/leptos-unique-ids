@@ -1,6 +1,6 @@
 [package]
 name = "leptos-unique-ids"
-description = "Leptos library to ensure unique ids in whole applications."
+description = "Leptos library to ensure globally unique DOM identifiers across an application."
 version = "0.1.0"
 edition = "2024"
 keywords = ["leptos"]
