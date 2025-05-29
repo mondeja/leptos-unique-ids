@@ -63,7 +63,9 @@ impl Iterator for LintDirectories {
 /// in the Cargo.toml file.
 #[test]
 fn crate_version_is_updated_in_readme() {
-    let main_cargo_toml_path = Path::new(env!("CARGO_MANIFEST_DIR")).join("Cargo.toml");
+    let main_cargo_toml_path = Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("..")
+        .join("Cargo.toml");
     let main_cargo_toml_content =
         std::fs::read_to_string(&main_cargo_toml_path).expect("Failed to read Cargo.toml");
     let raw_version =
