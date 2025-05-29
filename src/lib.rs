@@ -1,5 +1,5 @@
 //! [Leptos] library to ensure unique ids in whole applications. Use an attribute
-//! macro to generate unique ids and Dylint lints to prevent conflicts and ensuring
+//! macro to generate unique ids and [Dylint] lints to prevent conflicts and ensuring
 //! consistency across all ids.
 //!
 //! [![Crates.io](https://img.shields.io/crates/v/leptos-unique-ids?logo=rust)](https://crates.io/crates/leptos-unique-ids)
@@ -63,9 +63,9 @@
 //! ## Linting
 //!
 //! To ensure that your code adheres to the unique identifiers convention, use the
-//! Dylint lints provided by `leptos-unique-ids`.
+//! [Dylint] lints provided by `leptos-unique-ids`.
 //!
-//! First, install Dylint if you haven't already with
+//! First, install [Dylint] if you haven't already with
 //!
 //! ```bash
 //! cargo install cargo-dylint dylint-link
@@ -128,6 +128,7 @@
 //!   dependency in your consumer crate.
 //!
 //! [Leptos]: https://leptos.dev
+//! [Dylint]: https://github.com/trailofbits/dylint
 //! [Leptos' `IntoAttributeValue` trait]: https://docs.rs/leptos/latest/leptos/attr/trait.IntoAttributeValue.html
 
 use convert_case::{Case, Casing};
