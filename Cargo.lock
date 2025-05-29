@@ -1183,6 +1183,7 @@ version = "0.1.0"
 dependencies = [
  "dylint_linting",
  "literal_as_id_attribute_value",
+ "tt_as_id_attribute_value",
 ]
 
 [[package]]

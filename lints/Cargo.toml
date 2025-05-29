@@ -14,6 +14,9 @@ crate-type = ["cdylib"]
 literal_as_id_attribute_value = { path = "literal_as_id_attribute_value", features = [
   "rlib"
 ] }
+tt_as_id_attribute_value = { path = "tt_as_id_attribute_value", features = [
+  "rlib"
+] }
 dylint_linting.workspace = true
 
 [package.metadata.rust-analyzer]

@@ -10,4 +10,5 @@ extern crate rustc_session;
 #[unsafe(no_mangle)]
 pub fn register_lints(sess: &rustc_session::Session, lint_store: &mut rustc_lint::LintStore) {
     literal_as_id_attribute_value::register_lints(sess, lint_store);
+    tt_as_id_attribute_value::register_lints(sess, lint_store);
 }

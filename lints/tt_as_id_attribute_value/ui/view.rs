@@ -35,8 +35,15 @@ fn main() {
     }
 
     // this case is catched by `literal_as_id_attribute_value` lint,
-    // so it should not trigger `tt_as_id_attribute_value`
+    // so it should not trigger here
     view! {
         <div id="my-identifier">Hello, world!</div>
+    }
+
+    view! {
+        <div id={
+            let my_id = "my-identifier";
+            my_id
+        }>Hello, world!</div>
     }
 }
