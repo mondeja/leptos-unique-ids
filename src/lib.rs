@@ -238,10 +238,21 @@ pub fn leptos_unique_ids(attr: TokenStream, item: TokenStream) -> TokenStream {
     // enum declaration
     let group = Group::new(Delimiter::Brace, {
         let mut inner = TokenStream::new();
-        #[expect(clippy::needless_range_loop)]
         for i in 0..ids_length {
             let ident = &ids_variants_idents[i];
+            let id = &ids[i];
             inner.extend([
+                TokenTree::Punct(Punct::new('#', Spacing::Alone)),
+                TokenTree::Group(Group::new(
+                    Delimiter::Bracket,
+                    [
+                        TokenTree::Ident(Ident::new("doc", call_site_span)),
+                        TokenTree::Punct(Punct::new('=', Spacing::Alone)),
+                        TokenTree::Literal(Literal::string(&format!("{id:?}"))),
+                    ]
+                    .into_iter()
+                    .collect(),
+                )),
                 TokenTree::Ident(ident.clone()),
                 TokenTree::Punct(Punct::new(',', Spacing::Alone)),
             ]);
