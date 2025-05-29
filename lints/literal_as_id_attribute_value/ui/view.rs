@@ -7,27 +7,24 @@ macro_rules! view {
     };
 }
 
-mod ids {
-    #[allow(dead_code)]
-    pub enum Ids {
-        MyIdentifier,
-    }
-}
-
 fn main() {
     view! {
-        <div id="my-identifier">Hello, world!</div>
+        <div id="my-identifier">Hello</div>
     }
-
     // Use the Ids enum instead
-    #[allow(unused_imports)]
-    use ids::Ids;
-
     view! {
-        <div id=Ids::MyIdentifier>Hello, world!</div>
+        <div id=Ids::MyIdentifier>Hello</div>
     }
 
     view! {
-        <div id="another-identifier">Hello, world!</div>
+        <div id="another-identifier">Hello</div>
+    }
+
+    // attr:id syntax
+    view! {
+        <div attr:id="my-identifier">Hello</div>
+    }
+    view! {
+        <div attr:id=Ids::MyIdentifier>Hello</div>
     }
 }

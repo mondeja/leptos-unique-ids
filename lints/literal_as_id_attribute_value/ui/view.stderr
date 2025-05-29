@@ -1,19 +1,27 @@
 warning: literal string passed as id attribute value
-  --> $DIR/view.rs:19:17
+  --> $DIR/view.rs:12:17
    |
-LL |         <div id="my-identifier">Hello, world!</div>
+LL |         <div id="my-identifier">Hello</div>
    |                 ^^^^^^^^^^^^^^^
    |
    = help: for further information visit https://github.com/mondeja/leptos-unique-ids/tree/main/lints/literal_as_id_attribute_value#readme
    = note: `#[warn(literal_as_id_attribute_value)]` on by default
 
 warning: literal string passed as id attribute value
-  --> $DIR/view.rs:31:17
+  --> $DIR/view.rs:20:17
    |
-LL |         <div id="another-identifier">Hello, world!</div>
+LL |         <div id="another-identifier">Hello</div>
    |                 ^^^^^^^^^^^^^^^^^^^^
    |
    = help: for further information visit https://github.com/mondeja/leptos-unique-ids/tree/main/lints/literal_as_id_attribute_value#readme
 
-warning: 2 warnings emitted
+warning: literal string passed as id attribute value
+  --> $DIR/view.rs:25:22
+   |
+LL |         <div attr:id="my-identifier">Hello</div>
+   |                      ^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://github.com/mondeja/leptos-unique-ids/tree/main/lints/literal_as_id_attribute_value#readme
+
+warning: 3 warnings emitted
 
