@@ -4,6 +4,7 @@ description = "Leptos library to ensure unique ids in whole applications."
 version = "0.1.0"
 edition = "2024"
 keywords = ["leptos"]
+license = "MIT"
 
 [lib]
 proc-macro = true
