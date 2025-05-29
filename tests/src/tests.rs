@@ -57,18 +57,23 @@ impl Iterator for LintDirectories {
     }
 }
 
+fn get_main_cargo_toml_version() -> String {
+    let main_cargo_toml_path = Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("..")
+        .join("Cargo.toml");
+    let main_cargo_toml_content =
+        std::fs::read_to_string(&main_cargo_toml_path).expect("Failed to read Cargo.toml");
+    extract_version_from_cargo_toml_content(&main_cargo_toml_content, "version =")
+        .expect("Failed to extract version from Cargo.toml")
+}
+
 /// The README.md file contains an example of how to install the crate.
 ///
 /// This test checks that the version in the README.md file matches the version
 /// in the Cargo.toml file.
 #[test]
 fn crate_version_is_updated_in_readme() {
-    let main_cargo_toml_path = Path::new(env!("CARGO_MANIFEST_DIR")).join("Cargo.toml");
-    let main_cargo_toml_content =
-        std::fs::read_to_string(&main_cargo_toml_path).expect("Failed to read Cargo.toml");
-    let raw_version =
-        extract_version_from_cargo_toml_content(&main_cargo_toml_content, "version =")
-            .expect("Failed to extract version from Cargo.toml");
+    let raw_version = get_main_cargo_toml_version();
 
     // from X.Y.Z to X.Y
     let expected_version = raw_version
@@ -87,21 +92,17 @@ fn crate_version_is_updated_in_readme() {
 
     let src_lib_versions =
         extract_versions_from_content(&src_lib_content, "//! leptos-unique-ids =");
-    let number_of_src_lib_versions = src_lib_versions.len();
-    if number_of_src_lib_versions != 1 {
-        panic!(
-            "Expected exactly one version in src/lib.rs, found {:?}",
-            number_of_src_lib_versions
-        );
-    }
+    assert_eq!(
+        src_lib_versions.len(),
+        1,
+        "Expected exactly one version in src/lib.rs, found {src_lib_versions:?}",
+    );
 
     for version in src_lib_versions {
-        if version != expected_version {
-            panic!(
-                "Version in src/lib.rs ({}) does not match Cargo.toml version ({})",
-                version, expected_version
-            );
-        }
+        assert_eq!(
+            version, expected_version,
+            "Version in src/lib.rs ({version}) does not match Cargo.toml version ({expected_version})",
+        );
     }
 }
 
@@ -112,12 +113,7 @@ fn crate_version_is_updated_in_readme() {
 /// matches the version in the Cargo.toml file of the lint library.
 #[test]
 fn lints_library_tag_version_is_updated_in_readme() {
-    let main_cargo_toml_path = Path::new(env!("CARGO_MANIFEST_DIR")).join("Cargo.toml");
-    let main_cargo_toml_content =
-        std::fs::read_to_string(&main_cargo_toml_path).expect("Failed to read Cargo.toml");
-    let expected_version =
-        extract_version_from_cargo_toml_content(&main_cargo_toml_content, "version =")
-            .expect("Failed to extract version from Cargo.toml");
+    let expected_version = get_main_cargo_toml_version();
 
     // README is generated from src/lib.rs
     let src_lib_path = Path::new(env!("CARGO_MANIFEST_DIR"))
@@ -128,21 +124,18 @@ fn lints_library_tag_version_is_updated_in_readme() {
         std::fs::read_to_string(&src_lib_path).expect("Failed to read src/lib.rs");
 
     let src_lib_versions = extract_versions_from_content(&src_lib_content, "tag =");
-    let number_of_src_lib_versions = src_lib_versions.len();
-    if number_of_src_lib_versions != 1 {
-        panic!(
-            "Expected exactly one tag version in src/lib.rs, found {:?}",
-            number_of_src_lib_versions
-        );
-    }
+    assert_eq!(
+        src_lib_versions.len(),
+        1,
+        "Expected exactly one tag version in src/lib.rs, found {src_lib_versions:?}",
+    );
 
     for tag_version in src_lib_versions {
-        if tag_version != format!("v{expected_version}") {
-            panic!(
-                "Tag version in src/lib.rs ({}) does not match Cargo.toml version ({})",
-                tag_version, expected_version
-            );
-        }
+        assert_eq!(
+            tag_version,
+            format!("v{expected_version}"),
+            "Tag version in src/lib.rs ({tag_version}) does not match Cargo.toml version ({expected_version})",
+        );
     }
 }
 
