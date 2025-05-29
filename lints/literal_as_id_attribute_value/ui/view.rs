@@ -26,4 +26,8 @@ fn main() {
     view! {
         <div id=Ids::MyIdentifier>Hello, world!</div>
     }
+
+    view! {
+        <div id="another-identifier">Hello, world!</div>
+    }
 }

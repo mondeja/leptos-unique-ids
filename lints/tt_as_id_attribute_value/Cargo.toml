@@ -1,8 +1,8 @@
 [package]
-name = "literal_as_id_attribute_value"
+name = "tt_as_id_attribute_value"
 version = "0.1.0"
 authors = ["Álvaro Mondéjar Rubio"]
-description = "Check for literals passed to id attribute values."
+description = "Check for token trees passed as id attribute values (except for `Ids` enum variants)."
 edition = "2024"
 publish = false
 
@@ -10,7 +10,7 @@ publish = false
 crate-type = ["cdylib", "rlib"]
 
 [[example]]
-name = "literal_as_id_attribute_value_view"
+name = "tt_as_id_attribute_value_view"
 path = "ui/view.rs"
 
 [dependencies]

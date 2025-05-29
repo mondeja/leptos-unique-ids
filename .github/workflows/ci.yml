@@ -85,3 +85,72 @@ jobs:
           tool: cargo-dylint,dylint-link
       - name: Run unit tests
         run: cargo test --all
+
+  test-release-leptos-unique-ids:
+    needs:
+      - lychee
+      - cargo-machete
+      - pre-commit
+      - test
+    if: |
+      '${{ github.event.pull_request.user.login }}' == 'mondeja' ||
+      startsWith(github.ref, 'refs/tags/') ||
+      github.ref == 'refs/heads/master'
+    name: Test leptos-unique-ids crate publishing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+      - name: Install dylint-link
+        uses: taiki-e/install-action@v2
+        with:
+          tool: dylint-link
+      - name: Publish (dry run)
+        run: |
+          cargo login ${{ secrets.CRATES_TOKEN }}
+          cargo publish -v --dry-run
+
+  release-leptos-unique-ids:
+    if: startsWith(github.ref, 'refs/tags/')
+    name: Publish leptos-unique-ids crate
+    needs: test-release-leptos-unique-ids
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+      - name: Install dylint-link
+        uses: taiki-e/install-action@v2
+        with:
+          tool: dylint-link
+      - name: Publish
+        run: |
+          cargo login ${{ secrets.CRATES_TOKEN }}
+          cargo publish -v
+
+  create-release:
+    if: startsWith(github.ref, 'refs/tags/')
+    name: Create release
+    needs: release-leptos-unique-ids
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get tag metadata
+        id: tag
+        run: |
+          TAG_TITLE=${GITHUB_REF#refs/*/}
+          echo "title=$TAG_TITLE" >> $GITHUB_OUTPUT
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          name: ${{ steps.tag.outputs.title }}
+          tag_name: ${{ steps.tag.outputs.title }}
+          body: |
+            See [CHANGELOG](https://github.com/mondeja/leptos-unique-ids/blob/master/CHANGELOG.md).
+          draft: false
+          prerelease: false

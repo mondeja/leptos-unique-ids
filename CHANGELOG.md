@@ -1,5 +1,5 @@
 # Changelog
 
-## Unreleased - 0.0.1
+## 2025-05-29 - 0.1.0
 
-First alpha release.
+First beta release.

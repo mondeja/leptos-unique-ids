@@ -1,0 +1,19 @@
+warning: token tree that is not `Ids` enum passed as id attribute value
+  --> $DIR/view.rs:22:17
+   |
+LL |         <div id=foo>Hello, world!</div>
+   |                 ^^^
+   |
+   = help: for further information visit https://github.com/mondeja/leptos-unique-ids/tree/main/lints/tt_as_id_attribute_value#readme
+   = note: `#[warn(tt_as_id_attribute_value)]` on by default
+
+warning: token tree that is not `Ids` enum passed as id attribute value
+  --> $DIR/view.rs:26:17
+   |
+LL |         <div id={foo}>Hello, world!</div>
+   |                 ^^^^^
+   |
+   = help: for further information visit https://github.com/mondeja/leptos-unique-ids/tree/main/lints/tt_as_id_attribute_value#readme
+
+warning: 2 warnings emitted
+

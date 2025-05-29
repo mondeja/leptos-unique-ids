@@ -1,3 +1,4 @@
 {
+  "editor.formatOnSave": true,
   "rust-analyzer.rustc.source": "discover"
 }
