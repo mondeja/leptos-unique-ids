@@ -57,20 +57,23 @@ impl Iterator for LintDirectories {
     }
 }
 
+fn get_main_cargo_toml_version() -> String {
+    let main_cargo_toml_path = Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("..")
+        .join("Cargo.toml");
+    let main_cargo_toml_content =
+        std::fs::read_to_string(&main_cargo_toml_path).expect("Failed to read Cargo.toml");
+    extract_version_from_cargo_toml_content(&main_cargo_toml_content, "version =")
+        .expect("Failed to extract version from Cargo.toml")
+}
+
 /// The README.md file contains an example of how to install the crate.
 ///
 /// This test checks that the version in the README.md file matches the version
 /// in the Cargo.toml file.
 #[test]
 fn crate_version_is_updated_in_readme() {
-    let main_cargo_toml_path = Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("..")
-        .join("Cargo.toml");
-    let main_cargo_toml_content =
-        std::fs::read_to_string(&main_cargo_toml_path).expect("Failed to read Cargo.toml");
-    let raw_version =
-        extract_version_from_cargo_toml_content(&main_cargo_toml_content, "version =")
-            .expect("Failed to extract version from Cargo.toml");
+    let raw_version = get_main_cargo_toml_version();
 
     // from X.Y.Z to X.Y
     let expected_version = raw_version
@@ -110,14 +113,7 @@ fn crate_version_is_updated_in_readme() {
 /// matches the version in the Cargo.toml file of the lint library.
 #[test]
 fn lints_library_tag_version_is_updated_in_readme() {
-    let main_cargo_toml_path = Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("..")
-        .join("Cargo.toml");
-    let main_cargo_toml_content =
-        std::fs::read_to_string(&main_cargo_toml_path).expect("Failed to read Cargo.toml");
-    let expected_version =
-        extract_version_from_cargo_toml_content(&main_cargo_toml_content, "version =")
-            .expect("Failed to extract version from Cargo.toml");
+    let expected_version = get_main_cargo_toml_version();
 
     // README is generated from src/lib.rs
     let src_lib_path = Path::new(env!("CARGO_MANIFEST_DIR"))
