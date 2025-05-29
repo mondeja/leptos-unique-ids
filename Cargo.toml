@@ -23,9 +23,9 @@ members = [
   ".",
   "tests",
   "lints",
+  "lints/helpers",
   "lints/literal_as_id_attribute_value",
   "lints/tt_as_id_attribute_value",
-  "lints/helpers"
 ]
 
 [workspace.dependencies]
