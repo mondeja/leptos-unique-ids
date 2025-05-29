@@ -79,7 +79,7 @@
 //!   {
 //!     git = "https://github.com/mondeja/leptos-unique-ids",
 //!     tag = "v0.1.0",
-//!     patterns = ["lints"]
+//!     pattern = "lints"
 //!   }
 //! ]
 //! ```
