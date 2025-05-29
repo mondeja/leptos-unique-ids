@@ -15,5 +15,17 @@ LL |         <div id={foo}>Hello, world!</div>
    |
    = help: for further information visit https://github.com/mondeja/leptos-unique-ids/tree/main/lints/tt_as_id_attribute_value#readme
 
-warning: 2 warnings emitted
+warning: token tree that is not `Ids` enum passed as id attribute value
+  --> $DIR/view.rs:44:17
+   |
+LL |           <div id={
+   |  _________________^
+LL | |             let my_id = "my-identifier";
+LL | |             my_id
+LL | |         }>Hello, world!</div>
+   | |_________^
+   |
+   = help: for further information visit https://github.com/mondeja/leptos-unique-ids/tree/main/lints/tt_as_id_attribute_value#readme
+
+warning: 3 warnings emitted
 
