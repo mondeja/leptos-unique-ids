@@ -7,13 +7,6 @@ macro_rules! view {
     };
 }
 
-mod ids {
-    #[allow(dead_code)]
-    pub enum Ids {
-        MyIdentifier,
-    }
-}
-
 fn main() {
     #[allow(unused_variables)]
     let foo = "my-identifier";
@@ -27,8 +20,6 @@ fn main() {
     }
 
     // Use the Ids enum instead
-    #[allow(unused_imports)]
-    use ids::Ids;
 
     view! {
         <div id=Ids::MyIdentifier>Hello, world!</div>
