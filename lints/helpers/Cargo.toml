@@ -9,15 +9,8 @@ publish = false
 [lib]
 crate-type = ["cdylib", "rlib"]
 
-[dependencies]
-dylint_linting.workspace = true
-clippy_utils.workspace = true
-
 [package.metadata.rust-analyzer]
 rustc_private = true
-
-[features]
-rlib = ["dylint_linting/constituent"]
 
 [lints]
 workspace = true

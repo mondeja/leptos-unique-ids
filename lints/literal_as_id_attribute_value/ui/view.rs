@@ -4,7 +4,7 @@
 macro_rules! view {
     ($($arg:tt)*) => {
         println!("foo");
-    }
+    };
 }
 
 mod ids {

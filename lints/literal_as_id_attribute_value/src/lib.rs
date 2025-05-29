@@ -5,9 +5,9 @@
 extern crate rustc_ast;
 
 use clippy_utils::diagnostics::span_lint_and_help;
-use rustc_ast::{token::{TokenKind, LitKind}};
+use lints_helpers::{ViewMacroCallIdAttributeValueIter, is_leptos_view_macro_call};
+use rustc_ast::token::{LitKind, TokenKind};
 use rustc_lint::{EarlyContext, EarlyLintPass};
-use lints_helpers::{is_leptos_view_macro_call, ViewMacroCallIdAttributeValueIter};
 
 dylint_linting::declare_pre_expansion_lint! {
     /// ### What it does
@@ -53,7 +53,9 @@ impl EarlyLintPass for LiteralAsIdAttributeValue {
             return;
         }
         for token in ViewMacroCallIdAttributeValueIter::new(macro_call) {
-            if let TokenKind::Literal(lit) = token.kind && lit.kind == LitKind::Str {
+            if let TokenKind::Literal(lit) = token.kind
+                && lit.kind == LitKind::Str
+            {
                 span_lint_and_help(
                     cx,
                     LITERAL_AS_ID_ATTRIBUTE_VALUE,

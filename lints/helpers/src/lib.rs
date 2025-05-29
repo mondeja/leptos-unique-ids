@@ -1,11 +1,15 @@
 #![feature(rustc_private)]
 #![warn(unused_extern_crates)]
 
+extern crate rustc_ast;
 #[allow(unused_extern_crates)]
 extern crate rustc_driver;
-extern crate rustc_ast;
 
-use rustc_ast::{MacCall, tokenstream::{TokenStreamIter, TokenTree}, token::{TokenKind, Token}};
+use rustc_ast::{
+    MacCall,
+    token::{Token, TokenKind},
+    tokenstream::{TokenStreamIter, TokenTree},
+};
 
 /// Given a macro call, return if is a `view!` macro
 pub fn is_leptos_view_macro_call(macro_call: &MacCall) -> bool {
@@ -18,7 +22,7 @@ pub fn is_leptos_view_macro_call(macro_call: &MacCall) -> bool {
 }
 
 /// Iterator for id attribute values in macro calls
-pub struct ViewMacroCallIdAttributeValueIter<'a>{
+pub struct ViewMacroCallIdAttributeValueIter<'a> {
     iter: TokenStreamIter<'a>,
     // 1: Initial
     // 2: Inside id attribute

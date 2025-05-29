@@ -7,6 +7,7 @@ repos:
           - --cache
           - --cache-location=.prettier-cache
           - --ignore-path=.gitignore
+          - --ignore-path=.prettierignore
   - repo: meta
     hooks:
       - id: check-hooks-apply
@@ -18,8 +19,10 @@ repos:
     hooks:
       - id: trailing-whitespace
         name: trailing-whitespace
+        exclude: \.stderr$
       - id: end-of-file-fixer
         name: end-of-file-fixer
+        exclude: \.stderr$
   - repo: https://github.com/doublify/pre-commit-rust
     rev: v1.0
     hooks:

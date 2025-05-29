@@ -2,6 +2,12 @@
 //! macro to generate unique ids and Dylint lints to prevent conflicts and ensuring
 //! consistency across all ids.
 //!
+//! [![Crates.io](https://img.shields.io/crates/v/leptos-unique-ids?logo=rust)](https://crates.io/crates/leptos-unique-ids)
+//! [![License](https://img.shields.io/crates/l/leptos-unique-ids?logo=mit)](https://github.com/mondeja/leptos-unique-ids/blob/master/LICENSE)
+//! [![Tests](https://img.shields.io/github/actions/workflow/status/mondeja/leptos-unique-ids/ci.yml?label=tests&logo=github)](https://github.com/mondeja/leptos-unique-ids/actions)
+//! [![docs.rs](https://img.shields.io/docsrs/leptos-unique-ids?logo=docs.rs)](https://docs.rs/leptos-unique-ids)
+//! [![Crates.io downloads](https://img.shields.io/crates/d/leptos-unique-ids)](https://crates.io/crates/leptos-unique-ids)
+//!
 //! # Installation
 //!
 //! ```toml
@@ -89,7 +95,7 @@
 //!
 //! will throw a warning like
 //!
-//! ```text
+//! ```sh
 //! warning: literal string passed as id attribute value
 //!    --> $DIR/view.rs:19:17
 //!    |

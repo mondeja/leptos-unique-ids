@@ -55,6 +55,11 @@ jobs:
           pip install pre-commit
       - name: Run pre-commit
         run: pre-commit run --all-files --show-diff-on-failure
+        env:
+          # fmt is failing to download on CI
+          SKIP: fmt
+      - name: Run rustfmt
+        run: cargo fmt --all -- --check
 
   test:
     name: Test
