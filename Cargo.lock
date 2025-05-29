@@ -1175,6 +1175,7 @@ name = "leptos-unique-ids"
 version = "0.1.0"
 dependencies = [
  "convert_case 0.8.0",
+ "leptos",
 ]
 
 [[package]]

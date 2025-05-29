@@ -13,6 +13,10 @@ path = "src/lib.rs"
 [dependencies]
 convert_case = "0.8"
 
+[dev-dependencies]
+# used for doctests
+leptos = ">=0.8"
+
 [features]
 default = ["into-str", "into-attribute-value"]
 into-str = []

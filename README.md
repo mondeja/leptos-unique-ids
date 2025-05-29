@@ -37,7 +37,7 @@ use leptos_unique_ids::leptos_unique_ids;
     "preview-download-svg-button",
     "preview-upload-svg-button",
 )]
-pub enum Ids {};
+pub enum Ids {}
 ```
 
 Then, in your components, you can use the `Ids` enum to generate unique identifiers.
@@ -49,20 +49,16 @@ let id: &'static str = Ids::LanguageSelector.as_str();
 let id: &'static str = Ids::PreviewDownloadSvgButton.into();
 ```
 
-By default, implements [Leptos' `IntoAttributeValue` trait] for the `Ids` enum,
+By default implements [Leptos' `IntoAttributeValue` trait] for the `Ids` enum,
 allowing you to use the identifiers as HTML attributes directly.
 
 ```rust
-use leptos::prelude::*;
 use ids::Ids;
 
-#[component]
-pub fn App() -> impl IntoView {
-    view! {
-        <div id=Ids::LanguageSelector>
-            ...
-        </div>
-    }
+view! {
+    <div id=Ids::LanguageSelector>
+        ...
+    </div>
 }
 ```
 
@@ -103,7 +99,7 @@ will throw a warning like
 
 ```sh
 warning: literal string passed as id attribute value
-   --> $DIR/view.rs:19:17
+   --> your/file.rs:10:17
    |
 LL |         <div id="my-identifier">Hello, world!</div>
    |                 ^^^^^^^^^^^^^^^
@@ -112,6 +108,39 @@ LL |         <div id="my-identifier">Hello, world!</div>
    = note: `#[warn(literal_as_id_attribute_value)]` on by default
 
 warning: 1 warning emitted
+```
+
+or the code snippet
+
+```rust
+let foo = "my-identifier";
+
+view! {
+    <div id=foo>Hello, world!</div>
+}
+```
+
+will throw a warning like
+
+```sh
+warning: token tree that is not `Ids` enum passed as id attribute value
+   --> your/file.rs:10:17
+   |
+LL |         <div id=foo>Hello, world!</div>
+   |                 ^^^
+   |
+   = help: for further information visit https://github.com/mondeja/leptos-unique-ids/tree/main/lints/tt_as_id_attribute_value#readme
+   = note: `#[warn(tt_as_id_attribute_value)]` on by default
+```
+
+They will force you to use the `Ids` enum instead, like this:
+
+```rust
+use ids::Ids;
+
+view! {
+   <div id=Ids::MyIdentifier>Hello, world!</div>
+}
 ```
 
 #### Lints
