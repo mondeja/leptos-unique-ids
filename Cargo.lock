@@ -2325,6 +2325,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "tt_as_id_attribute_value"
+version = "0.1.0"
+dependencies = [
+ "clippy_utils",
+ "dylint_linting",
+ "dylint_testing",
+ "leptos",
+ "lints-helpers",
+]
+
+[[package]]
 name = "typed-builder"
 version = "0.21.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

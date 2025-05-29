@@ -18,7 +18,14 @@ into-str = []
 into-attribute-value = []
 
 [workspace]
-members = [".", "tests", "lints", "lints/literal_as_id_attribute_value", "lints/helpers"]
+members = [
+  ".",
+  "tests",
+  "lints",
+  "lints/literal_as_id_attribute_value",
+  "lints/tt_as_id_attribute_value",
+  "lints/helpers"
+]
 
 [workspace.dependencies]
 clippy_utils = { git = "https://github.com/rust-lang/rust-clippy", rev = "0450db33a5d8587f7c1d4b6d233dac963605766b" }

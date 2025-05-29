@@ -7,7 +7,7 @@ extern crate rustc_driver;
 
 use rustc_ast::{
     MacCall,
-    token::{Token, TokenKind},
+    token::TokenKind,
     tokenstream::{TokenStreamIter, TokenTree},
 };
 
@@ -40,7 +40,7 @@ impl<'a> ViewMacroCallIdAttributeValueIter<'a> {
 }
 
 impl<'a> Iterator for ViewMacroCallIdAttributeValueIter<'a> {
-    type Item = &'a Token;
+    type Item = &'a TokenTree;
 
     fn next(&mut self) -> Option<Self::Item> {
         let token = self.iter.next()?;
@@ -65,13 +65,8 @@ impl<'a> Iterator for ViewMacroCallIdAttributeValueIter<'a> {
             self.next()
         } else {
             // Here always the parser state is 4
-            //
-            // if self.parser_state == 4
-            if let TokenTree::Token(token, _) = token {
-                return Some(token);
-            }
-            self.parser_state = 1;
-            self.next()
+            self.parser_state >>= 2;
+            return Some(token);
         }
     }
 }
