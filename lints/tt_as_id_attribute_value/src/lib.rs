@@ -6,7 +6,10 @@ extern crate rustc_ast;
 
 use clippy_utils::diagnostics::span_lint_and_help;
 use lints_helpers::{ViewMacroCallIdAttributeValueIter, is_leptos_view_macro_call};
-use rustc_ast::{token::TokenKind, tokenstream::TokenTree};
+use rustc_ast::{
+    token::{LitKind, TokenKind},
+    tokenstream::TokenTree,
+};
 use rustc_lint::{EarlyContext, EarlyLintPass};
 
 const HELP: &str = concat!(
@@ -66,6 +69,11 @@ impl EarlyLintPass for TtAsIdAttributeValue {
                     if symbol.as_str() == "Ids" {
                         continue;
                     }
+                } else if let TokenKind::Literal(lit) = token.kind
+                    && lit.kind == LitKind::Str
+                {
+                    // this case is catched by `literal_as_id_attribute_value` lint
+                    continue;
                 }
                 span_lint_and_help(
                     cx,

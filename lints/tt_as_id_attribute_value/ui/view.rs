@@ -33,4 +33,10 @@ fn main() {
     view! {
         <div id=Ids::MyIdentifier>Hello, world!</div>
     }
+
+    // this case is catched by `literal_as_id_attribute_value` lint,
+    // so it should not trigger `tt_as_id_attribute_value`
+    view! {
+        <div id="my-identifier">Hello, world!</div>
+    }
 }
