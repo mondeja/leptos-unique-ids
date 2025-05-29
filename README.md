@@ -119,8 +119,10 @@ warning: 1 warning emitted
 | Rule | Description |
 | --- | --- |
 | [`literal_as_id_attribute_value`] | Check for literals passed to id attribute values. |
+| [`tt_as_id_attribute_value`] | Check for token trees passed as id attribute values (except for `Ids` enum variants). |
 
 [`literal_as_id_attribute_value`]: https://github.com/mondeja/leptos-unique-ids/tree/main/lints/literal_as_id_attribute_value#readme
+[`tt_as_id_attribute_value`]: https://github.com/mondeja/leptos-unique-ids/tree/main/lints/tt_as_id_attribute_value#readme
 
 ## Features
 
