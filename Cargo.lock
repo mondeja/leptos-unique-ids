@@ -1362,7 +1362,6 @@ dependencies = [
  "clippy_utils",
  "dylint_linting",
  "dylint_testing",
- "leptos",
  "lints-helpers",
 ]
 
@@ -2333,7 +2332,6 @@ dependencies = [
  "clippy_utils",
  "dylint_linting",
  "dylint_testing",
- "leptos",
  "lints-helpers",
 ]
 
