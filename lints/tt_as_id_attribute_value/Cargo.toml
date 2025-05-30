@@ -20,7 +20,6 @@ lints-helpers.workspace = true
 
 [dev-dependencies]
 dylint_testing.workspace = true
-leptos.workspace = true
 
 [package.metadata.rust-analyzer]
 rustc_private = true

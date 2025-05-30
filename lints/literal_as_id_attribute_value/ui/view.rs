@@ -7,6 +7,10 @@ macro_rules! view {
     };
 }
 
+mod leptos {
+    pub(crate) use crate::view;
+}
+
 fn main() {
     view! {
         <div id="my-identifier">Hello</div>
@@ -26,5 +30,10 @@ fn main() {
     }
     view! {
         <div attr:id=Ids::MyIdentifier>Hello</div>
+    }
+
+    // leptos::view!
+    leptos::view! {
+        <div id="my-identifier">Hello</div>
     }
 }

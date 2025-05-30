@@ -36,7 +36,6 @@ members = [
 clippy_utils = { git = "https://github.com/rust-lang/rust-clippy", rev = "0450db33a5d8587f7c1d4b6d233dac963605766b" }
 dylint_linting = "4.1.0"
 dylint_testing = "4.1.0"
-leptos = ">=0.5"
 lints-helpers = { path = "lints/helpers" }
 
 [lints]
