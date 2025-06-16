@@ -1,0 +1,7 @@
+error: Expected at least one string literal in the attribute.
+ --> ui/fail/empty.rs:3:1
+  |
+3 | #[leptos_unique_ids]
+  | ^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the attribute macro `leptos_unique_ids` (in Nightly builds, run with -Z macro-backtrace for more info)

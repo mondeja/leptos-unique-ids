@@ -74,7 +74,7 @@
 //! libraries = [
 //!   {
 //!     git = "https://github.com/mondeja/leptos-unique-ids",
-//!     tag = "v0.1.0",
+//!     tag = "v0.1.1",
 //!     pattern = "lints"
 //!   }
 //! ]
@@ -160,7 +160,8 @@
 //! [Dylint]: https://github.com/trailofbits/dylint
 //! [Leptos' `IntoAttributeValue` trait]: https://docs.rs/leptos/latest/leptos/attr/trait.IntoAttributeValue.html
 
-use convert_case::{Case, Casing};
+mod pascal_case;
+
 use proc_macro::{Delimiter, Group, Ident, Literal, Punct, Spacing, Span, TokenStream, TokenTree};
 
 /// Generate the implementation for a unique ids enum.
@@ -260,7 +261,14 @@ pub fn leptos_unique_ids(attr: TokenStream, item: TokenStream) -> TokenStream {
                 return error(b"Duplicated string literal found.", span);
             }
 
-            ids_variants_idents.push(to_pascal_case_ident(&value, call_site_span));
+            let maybe_pascal = pascal_case::to_pascal_case(&value);
+            if let Err(err) = maybe_pascal {
+                let span = literal.span();
+                return error(err, span);
+            }
+            let pascal = maybe_pascal.unwrap();
+            let ident = Ident::new(&pascal, call_site_span);
+            ids_variants_idents.push(ident);
             ids.push(value);
         } else if let TokenTree::Punct(punct) = token {
             if punct.as_char() != ',' {
@@ -280,6 +288,13 @@ pub fn leptos_unique_ids(attr: TokenStream, item: TokenStream) -> TokenStream {
     }
 
     let ids_length = ids.len();
+
+    if ids_length == 0 {
+        return error(
+            b"Expected at least one string literal in the attribute.",
+            call_site_span,
+        );
+    }
 
     // remove the last token and add the implementation
     let mut tokens: Vec<TokenTree> = item.into_iter().collect();
@@ -521,9 +536,4 @@ fn value_from_literal_str(literal_str: &str) -> Result<&str, &'static [u8]> {
     } else {
         Err(b"Literal must be a string literal")
     }
-}
-
-fn to_pascal_case_ident(input: &str, span: Span) -> Ident {
-    let pascal = input.to_case(Case::Pascal);
-    Ident::new(&pascal, span)
 }

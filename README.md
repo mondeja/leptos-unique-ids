@@ -80,7 +80,7 @@ and then, configure the lints in your workspace `Cargo.toml`.
 libraries = [
   {
     git = "https://github.com/mondeja/leptos-unique-ids",
-    tag = "v0.1.0",
+    tag = "v0.1.1",
     pattern = "lints"
   }
 ]

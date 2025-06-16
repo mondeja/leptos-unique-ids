@@ -1,7 +1,7 @@
 [package]
 name = "leptos-unique-ids"
 description = "Leptos library to ensure globally unique DOM identifiers across an application."
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 keywords = ["leptos"]
 license = "MIT"
@@ -11,16 +11,17 @@ proc-macro = true
 path = "src/lib.rs"
 
 [dependencies]
-convert_case = "0.8"
+convert_case = { version = "0.8", optional = true }
 
 [dev-dependencies]
 # used for doctests
-leptos = ">=0.8"
+leptos.workspace = true
 
 [features]
 default = ["into-str", "into-attribute-value"]
 into-str = []
 into-attribute-value = []
+convert-case = ["dep:convert_case"]
 
 [workspace]
 members = [
@@ -37,6 +38,7 @@ clippy_utils = { git = "https://github.com/rust-lang/rust-clippy", rev = "0450db
 dylint_linting = "4.1.0"
 dylint_testing = "4.1.0"
 lints-helpers = { path = "lints/helpers" }
+leptos = ">=0.8"
 
 [lints]
 workspace = true
