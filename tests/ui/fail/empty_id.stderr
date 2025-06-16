@@ -1,0 +1,7 @@
+error: String literals in the attribute cannot be empty.
+ --> ui/fail/empty_id.rs:3:1
+  |
+3 | #[leptos_unique_ids("foo", "")]
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the attribute macro `leptos_unique_ids` (in Nightly builds, run with -Z macro-backtrace for more info)

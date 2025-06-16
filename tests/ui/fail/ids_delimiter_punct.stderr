@@ -1,0 +1,7 @@
+error: Expected a comma between string literals in the attribute.
+ --> ui/fail/ids_delimiter_punct.rs:3:1
+  |
+3 | #[leptos_unique_ids("foo": "bar")]
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the attribute macro `leptos_unique_ids` (in Nightly builds, run with -Z macro-backtrace for more info)

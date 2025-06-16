@@ -87,6 +87,8 @@ jobs:
           tool: cargo-dylint,dylint-link
       - name: Run unit tests
         run: cargo test --all
+      - name: Run unit tests (convert-case feature)
+        run: cargo test --all --features leptos-unique-ids/convert-case
 
   test-release-leptos-unique-ids:
     needs:
