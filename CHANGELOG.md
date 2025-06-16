@@ -8,6 +8,7 @@
   feature.
 - Better error message when no strings are provided to the `leptos_unique_ids` macro.
 - Added reference documentation for the `leptos_unique_ids` macro.
+- Check for non-ASCII characters in identifiers and return an error if found.
 
 ## 2025-05-29 - 0.1.0
 
